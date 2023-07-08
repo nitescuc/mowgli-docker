@@ -43,8 +43,8 @@ export OM_USE_RELATIVE_POSITION=False
 
 # If needed, uncomment and set to coordinates near you (these default coordinates are somewhere in Germany).
 # This will be your map origin!
-export OM_DATUM_LAT=48.8831951
-export OM_DATUM_LONG=2.1661984
+# export OM_DATUM_LAT=48.8831951
+# export OM_DATUM_LONG=2.1661984
 # export OM_DATUM_LAT=48.13724720055111
 # export OM_DATUM_LONG=11.575605219552623
 
