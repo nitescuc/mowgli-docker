@@ -1,9 +1,26 @@
 version: '3'
 
 services:
-
+  gui:
+    container_name: mowgli-gui
+    image: ghcr.io/cedbossneo/mowgli-gui:master
+    ports:
+      - 4006:8080
+    restart: unless-stopped
+    environment:
+      ROS_MASTER_URI: http://${ROS_IP}:11311
+      MOWER_CONFIG_FILE: /config/mower_config.sh
+      DOCKER_HOST: unix:///var/run/docker.sock
+    depends_on:
+      - roscore
+    volumes:
+      - ./config/om:/config
+      - /var/run/docker.sock:/var/run/docker.sock
   web:
     container_name: mowgli-web
+    labels:
+      project: mowgli
+      app: web
     image: nginx
     ports:
       - 4005:80
@@ -13,6 +30,9 @@ services:
 
   mosquitto:
     container_name: mowgli-mqtt
+    labels:
+      project: mowgli
+      app: mqtt
     hostname: mosquitto
     image: eclipse-mosquitto:latest
     ports:
@@ -24,7 +44,10 @@ services:
 
   roscore:
     container_name: mowgli-roscore
-    image: ghcr.io/cedbossneo/mowgli-docker:cedbossneo-arm64
+    labels:
+      project: mowgli
+      app: roscore
+    image: ghcr.io/cedbossneo/mowgli-docker:cedbossneo
     network_mode: host
     #pull_policy: always
     tty: true
@@ -44,7 +67,10 @@ services:
 
   rosserial:
     container_name: mowgli-rosserial
-    image: ghcr.io/cedbossneo/mowgli-docker:cedbossneo-arm64
+    labels:
+      project: mowgli
+      app: rosserial
+    image: ghcr.io/cedbossneo/mowgli-docker:cedbossneo
     network_mode: host
     #pull_policy: always
     tty: true
@@ -77,7 +103,10 @@ services:
 
   openmower:
     container_name: mowgli-openmower
-    image: ghcr.io/cedbossneo/mowgli-docker:cedbossneo-arm64
+    labels:
+      project: mowgli
+      app: openmower
+    image: ghcr.io/cedbossneo/mowgli-docker:cedbossneo
     network_mode: host
     #pull_policy: always
     tty: true
