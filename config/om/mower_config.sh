@@ -101,19 +101,25 @@ export OM_ENABLE_MOWER=true
 # True to start mowing automatically. If this is false, you need to start manually by pressing the start button
 export OM_AUTOMATIC_MODE=0
 
-export OM_OUTLINE_OFFSET=0.05
+export OM_OUTLINE_OFFSET=0.15
 
 export OM_NO_COMMS=true
 
 # Set default GPS antenna offset
-export OM_ANTENNA_OFFSET_X=0.3
+export OM_ANTENNA_OFFSET_X=0.15
 export OM_ANTENNA_OFFSET_Y=0.0
 
 # Set distance between wheels in m
 export OM_WHEEL_DISTANCE_M=0.325
 
 # Set default ticks/m
-export OM_WHEEL_TICKS_PER_M=300.0
+export OM_WHEEL_TICKS_PER_M=315.0
 
 # Heatmap UNSET or om_gps_accuracy
 export OM_HEATMAP_SENSOR_IDS=om_gps_accuracy
+
+export OM_MQTT_ENABLE=True
+export OM_MQTT_HOSTNAME="192.168.1.6"
+export OM_MQTT_PORT="1883"
+export OM_MQTT_USER="mowgli"
+export OM_MQTT_PASSWORD="R88&qRArin*@"
