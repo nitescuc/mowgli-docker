@@ -2,6 +2,30 @@ version: '3'
 
 services:
 
+  editor:
+    container_name: mowgli-mapeditor
+    image: mowgli-mapeditor
+    restart: unless-stopped
+    ports:
+      - 5000:5000
+    volumes:
+      - ./ros:/map
+
+  gui:
+    container_name: mowgli-gui
+    image: ghcr.io/cedbossneo/mowgli-gui:master
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      ROS_IP: ${ROS_IP}
+      ROS_MASTER_URI: http://${ROS_IP}:11311
+      MOWER_CONFIG_FILE: /config/mower_config.sh
+      DOCKER_HOST: unix:///var/run/docker.sock
+    depends_on:
+      - openmower
+    volumes:
+      - ./config/om:/config
+      - /var/run/docker.sock:/var/run/docker.sock
   web:
     container_name: mowgli-web
     image: nginx
@@ -9,6 +33,9 @@ services:
       - 4005:80
     volumes:
       - ./web:/usr/share/nginx/html:ro
+    labels:
+      project: mowgli
+      app: web
     restart: unless-stopped
 
   mosquitto:
@@ -21,59 +48,6 @@ services:
     volumes:
       - ./config/mqtt/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
     restart: unless-stopped
-
-  # roscore:
-  #   container_name: mowgli-roscore
-  #   image: ghcr.io/cedbossneo/mowgli-docker:cedbossneo-arm64
-  #   network_mode: host
-  #   #pull_policy: always
-  #   tty: true
-  #   privileged: true
-  #   command:
-  #     - /opt/ros/noetic/bin/roscore
-  #   environment:
-  #     ROS_IP: ${ROS_IP}
-  #     ROSCONSOLE_CONFIG_FILE: /config/rosconsole.config
-  #     ROSOUT_DISABLE_FILE_LOGGING: true
-  #   tmpfs: /root/.ros/log/
-  #   volumes:
-  #     - ./config/om:/config:ro
-  #     - ./ros:/root/.ros/
-  #     - /etc/timezone:/etc/timezone:ro
-  #   restart: unless-stopped
-
-  # rosserial:
-  #   container_name: mowgli-rosserial
-  #   image: ghcr.io/cedbossneo/mowgli-docker:cedbossneo-arm64
-  #   network_mode: host
-  #   #pull_policy: always
-  #   tty: true
-  #   privileged: true
-  #   logging:
-  #     driver: "json-file"
-  #     options:
-  #       max-file: "5"
-  #       max-size: 10m
-  #   environment:
-  #     ROS_MASTER_URI: http://${ROS_IP}:11311
-  #     ROS_IP: ${ROS_IP}
-  #     ROSCONSOLE_CONFIG_FILE: /config/rosconsole.config
-  #     ROSOUT_DISABLE_FILE_LOGGING: true
-  #   command:
-  #     - /opt/ros/noetic/bin/rosrun
-  #     - rosserial_server
-  #     - serial_node
-  #     - _port:=/dev/mowgli
-  #     - _baud:=115200
-  #   tmpfs: /root/.ros/log/
-  #   volumes:
-  #     - ./ros:/root/.ros/
-  #     - ./config/om:/config:ro
-  #     - /etc/timezone:/etc/timezone:ro
-  #     - /dev:/dev
-  #   depends_on:
-  #     - roscore
-  #   restart: unless-stopped
 
   openmower:
     container_name: mowgli-openmower
@@ -103,6 +77,7 @@ services:
       - ./ros:/root/.ros/
       - /etc/timezone:/etc/timezone:ro
       - /dev:/dev
-#    depends_on:
-#      - rosserial
+    labels:
+      project: mowgli
+      app: openmower
     restart: unless-stopped
