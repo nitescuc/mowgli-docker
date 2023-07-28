@@ -73,7 +73,7 @@ export OM_USE_F9R_SENSOR_FUSION=False
 export OM_DOCKING_DISTANCE=1.0
 
 # The distance to drive for undocking. This needs to be large enough for the robot to have GPS reception
-export OM_UNDOCK_DISTANCE=1.0
+export OM_UNDOCK_DISTANCE=2.0
 
 # How many outlines should the mover drive. It's not recommended to set this below 4.
 export OM_OUTLINE_COUNT=4
@@ -101,7 +101,7 @@ export OM_ENABLE_MOWER=true
 # True to start mowing automatically. If this is false, you need to start manually by pressing the start button
 export OM_AUTOMATIC_MODE=0
 
-export OM_OUTLINE_OFFSET=0.15
+export OM_OUTLINE_OFFSET=0.20
 
 export OM_NO_COMMS=true
 
