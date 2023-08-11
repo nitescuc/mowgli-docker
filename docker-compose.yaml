@@ -1,0 +1,83 @@
+version: '3'
+
+services:
+
+  editor:
+    container_name: mowgli-mapeditor
+    image: mowgli-mapeditor
+    restart: unless-stopped
+    ports:
+      - 5000:5000
+    volumes:
+      - ./ros:/map
+
+  gui:
+    container_name: mowgli-gui
+    image: ghcr.io/cedbossneo/mowgli-gui:master
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      ROS_IP: ${ROS_IP}
+      ROS_MASTER_URI: http://${ROS_IP}:11311
+      MOWER_CONFIG_FILE: /config/mower_config.sh
+      DOCKER_HOST: unix:///var/run/docker.sock
+    depends_on:
+      - openmower
+    volumes:
+      - ./config/om:/config
+      - /var/run/docker.sock:/var/run/docker.sock
+  web:
+    container_name: mowgli-web
+    image: nginx
+    ports:
+      - 4005:80
+    volumes:
+      - ./web:/usr/share/nginx/html:ro
+    labels:
+      project: mowgli
+      app: web
+    restart: unless-stopped
+
+  mosquitto:
+    container_name: mowgli-mqtt
+    hostname: mosquitto
+    image: eclipse-mosquitto:latest
+    ports:
+      - 1883:1883
+      - 9001:9001
+    volumes:
+      - ./config/mqtt/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+    restart: unless-stopped
+
+  openmower:
+    container_name: mowgli-openmower
+    image: mowgli-docker:cni
+    network_mode: host
+    #pull_policy: always
+    tty: true
+    privileged: true
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 10m
+    environment:
+      ROS_MASTER_URI: http://${ROS_IP}:11311
+      ROS_IP: ${ROS_IP}
+      ROSCONSOLE_CONFIG_FILE: /config/rosconsole.config   # comment this line out to enable more logs
+#      ROSOUT_DISABLE_FILE_LOGGING: true                   # comment this line out to enable more logs
+      OM_DATUM_LAT: ${OM_DATUM_LAT}
+      OM_DATUM_LONG: ${OM_DATUM_LONG}
+#    tmpfs: /root/.ros/log                          # comment this line out to enable persistent logs
+    volumes:
+      - ./config/om:/config:ro
+      - ./docker/openmower/scripts/start_mowgli_single.sh:/home/ubuntu/scripts/start_mowgli.sh
+      - ./mower_params:/root/mower_params:ro
+      - ./params:/opt/open_mower_ros/src/open_mower/params:ro
+      - ./ros:/root/.ros/
+      - /etc/timezone:/etc/timezone:ro
+      - /dev:/dev
+    labels:
+      project: mowgli
+      app: openmower
+    restart: unless-stopped

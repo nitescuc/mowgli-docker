@@ -27,7 +27,7 @@ FROM base as fetch
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN git clone https://github.com/ClemensElflein/open_mower_ros /opt/open_mower_ros
+RUN git clone https://github.com/nitescuc/open_mower_ros /opt/open_mower_ros
 
 WORKDIR /opt/open_mower_ros
 
@@ -119,5 +119,9 @@ USER root
 RUN bash -c 'source /opt/ros/noetic/setup.bash && cd /home/ubuntu/rosserial && catkin_make -DCMAKE_INSTALL_PREFIX=/opt/ros/noetic install --only-pkg-with-deps rosserial_server'
 
 ADD scripts /home/ubuntu/scripts
+
+ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
+RUN cd /opt/open_mower_ros && git checkout main && git pull && \
+    bash -c "source /opt/ros/noetic/setup.bash && source /opt/prebuilt/slic3r_coverage_planner/setup.bash && catkin_make -DCATKIN_BLACKLIST_PACKAGES=slic3r_coverage_planner"
 
 CMD [ "/home/ubuntu/scripts/start_mowgli.sh" ]
