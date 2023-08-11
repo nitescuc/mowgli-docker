@@ -1,7 +1,7 @@
 FTCPlanner:
-  acceleration: 0.2
+  acceleration: 0.25
   debug_pid: true
-  forward_only: true
+  forward_only: false
   goal_timeout: 20.0
   kd_ang: 0
   kd_lat: 5.0
