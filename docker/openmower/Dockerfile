@@ -121,7 +121,7 @@ RUN bash -c 'source /opt/ros/noetic/setup.bash && cd /home/ubuntu/rosserial && c
 ADD scripts /home/ubuntu/scripts
 
 ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
-RUN cd /opt/open_mower_ros && git checkout main && git pull && \
-    bash -c "source /opt/ros/noetic/setup.bash && source /opt/prebuilt/slic3r_coverage_planner/setup.bash && catkin_make -DCATKIN_BLACKLIST_PACKAGES=slic3r_coverage_planner"
+RUN cd /opt/open_mower_ros && git checkout main && git pull && git submodule update src/lib/xbot_positioning && git submodule update src/lib/ftc_local_planner
+RUN bash -c "source /opt/ros/noetic/setup.bash && source /opt/prebuilt/slic3r_coverage_planner/setup.bash && catkin_make -DCATKIN_BLACKLIST_PACKAGES=slic3r_coverage_planner"
 
 CMD [ "/home/ubuntu/scripts/start_mowgli.sh" ]
