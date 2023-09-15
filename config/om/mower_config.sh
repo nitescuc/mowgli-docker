@@ -73,7 +73,7 @@ export OM_USE_F9R_SENSOR_FUSION=False
 ##    Mower Logic Settings    ##
 ################################
 # The distance to drive forward AFTER reaching the second docking point
-export OM_DOCKING_DISTANCE=1.0
+export OM_DOCKING_DISTANCE=2.0
 export OM_DOCKING_APPROACH_DISTANCE=1
 
 # The distance to drive for undocking. This needs to be large enough for the robot to have GPS reception
