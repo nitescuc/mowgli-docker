@@ -73,8 +73,8 @@ export OM_USE_F9R_SENSOR_FUSION=False
 ##    Mower Logic Settings    ##
 ################################
 # The distance to drive forward AFTER reaching the second docking point
-export OM_DOCKING_DISTANCE=2.0
-export OM_DOCKING_APPROACH_DISTANCE=1
+export OM_DOCKING_DISTANCE=1.60
+export OM_DOCKING_APPROACH_DISTANCE=1.0
 
 # The distance to drive for undocking. This needs to be large enough for the robot to have GPS reception
 export OM_UNDOCK_DISTANCE=2.5
@@ -95,12 +95,16 @@ export OM_BATTERY_FULL_VOLTAGE=28.0
 export OM_MOWING_MOTOR_TEMP_HIGH=80.0
 export OM_MOWING_MOTOR_TEMP_LOW=40.0
 
-export OM_GPS_WAIT_TIME_SEC=60.0
-export OM_GPS_TIMEOUT_SEC=5.0
+export OM_GPS_WAIT_TIME_SEC=30.0
+export OM_GPS_TIMEOUT_SEC=3.0
+export OM_GPS_MAX_ACCURACY=0.1
 
 export OM_GPS_USE_FIX_POINT=true
 export OM_GPS_FIX_POINT_X=3.0
 export OM_GPS_FIX_POINT_Y=2.0
+export OM_GPS_SET_DOCKED_POSE=true
+export OM_GPS_DOCKED_POSE_X=1.14
+export OM_GPS_DOCKED_POSE_Y=-0.04
 export OM_MOWING_MOW_DIRECTION_REVERSE_AREAS=1,2,4
 # Mowing Behavior Settings
 # True to enable mowing motor
