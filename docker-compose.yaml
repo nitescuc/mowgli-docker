@@ -6,30 +6,12 @@ services:
     container_name: mowgli-mapeditor
     image: tazlogic/mowgli-mapeditor:latest
     restart: unless-stopped
-#    ports:
-#      - 5000:5000
     network_mode: host
     environment:
       ROSBRIDGE_HOST: 192.168.1.8
     volumes:
       - ./ros:/map
 
-  gui:
-    container_name: openmower-gui
-    image: ghcr.io/cedbossneo/openmower-gui:master
-    restart: unless-stopped
-    network_mode: host
-#    privileged: true
-    environment:
-      ROS_IP: ${ROS_IP}
-      ROS_MASTER_URI: http://${ROS_IP}:11311
-      MOWER_CONFIG_FILE: /config/mower_config.sh
-      DOCKER_HOST: unix:///var/run/docker.sock
-    depends_on:
-      - openmower
-    volumes:
-      - ./config/om:/config
-      - /var/run/docker.sock:/var/run/docker.sock
   web:
     container_name: mowgli-web
     image: nginx
@@ -55,10 +37,8 @@ services:
 
   openmower:
     container_name: mowgli-openmower
-#    image: mowgli-docker:cni
     image: tazlogic/open-mower
     network_mode: host
-    #pull_policy: always
     tty: true
     privileged: true
     logging:
@@ -71,8 +51,6 @@ services:
       ROS_IP: ${ROS_IP}
       ROSCONSOLE_CONFIG_FILE: /config/rosconsole.config   # comment this line out to enable more logs
 #      ROSOUT_DISABLE_FILE_LOGGING: true                   # comment this line out to enable more logs
-#      OM_DATUM_LAT: ${OM_DATUM_LAT}
-#      OM_DATUM_LONG: ${OM_DATUM_LONG}
     tmpfs: /root/.ros/log                          # comment this line out to enable persistent logs
     volumes:
       - ./config/om:/config:ro
