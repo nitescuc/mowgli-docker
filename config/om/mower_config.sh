@@ -87,6 +87,9 @@ export OM_OUTLINE_COUNT=4
 # 0.13 works well for the Classic 500.
 export OM_TOOL_WIDTH=0.13
 
+export OM_MAX_FIRST_POINT_ATTEMPTS=3
+export OM_MAX_FIRST_POINT_TRIM_ATTEMPTS=20
+
 # Voltages for battery to be considered full or empty
 export OM_BATTERY_EMPTY_VOLTAGE=23.0
 export OM_BATTERY_FULL_VOLTAGE=28.0
@@ -97,7 +100,7 @@ export OM_MOWING_MOTOR_TEMP_LOW=40.0
 
 export OM_GPS_WAIT_TIME_SEC=30.0
 export OM_GPS_TIMEOUT_SEC=3.0
-export OM_GPS_MAX_ACCURACY=0.1
+export OM_GPS_MAX_ACCURACY=0.04
 
 export OM_GPS_USE_FIX_POINT=true
 export OM_GPS_FIX_POINT_X=3.0
