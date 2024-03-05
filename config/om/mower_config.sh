@@ -53,6 +53,7 @@ export OM_USE_RELATIVE_POSITION=False
 export OM_GPS_PROTOCOL=UBX
 
 source /config/ntrip.OUIL.sh
+#source /config/ntrip.LNE1.sh
 # NTRIP Settings
 # Set to False if using external radio plugged into the Ardusimple board.
 #export OM_USE_NTRIP=True
@@ -99,8 +100,9 @@ export OM_MOWING_MOTOR_TEMP_HIGH=80.0
 export OM_MOWING_MOTOR_TEMP_LOW=40.0
 
 export OM_GPS_WAIT_TIME_SEC=30.0
-export OM_GPS_TIMEOUT_SEC=3.0
+export OM_GPS_TIMEOUT_SEC=20.0
 export OM_GPS_MAX_ACCURACY=0.04
+export OM_GPS_ALLOW_FLOAT_RTK=false
 
 export OM_GPS_USE_FIX_POINT=true
 export OM_GPS_FIX_POINT_X=3.0
