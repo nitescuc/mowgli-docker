@@ -22,5 +22,5 @@ global_costmap:
 #    mark_threshold: 0.5 # default is 0.8
 
   inflater_layer:
-    inflation_radius: 1.0 # was 0.1
-    cost_scaling_factor: 0.5 # was 0.5 then 1.0
+    inflation_radius: 0.5 # was 0.1
+    cost_scaling_factor: 0.75 # was 0.5 then 1.0
