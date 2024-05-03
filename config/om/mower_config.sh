@@ -90,33 +90,35 @@ export OM_TOOL_WIDTH=0.13
 
 export OM_MAX_FIRST_POINT_ATTEMPTS=3
 export OM_MAX_FIRST_POINT_TRIM_ATTEMPTS=20
+export OM_OBSTACLE_SKIP_POINTS=15
 
 # Voltages for battery to be considered full or empty
 export OM_BATTERY_EMPTY_VOLTAGE=23.0
-export OM_BATTERY_FULL_VOLTAGE=28.0
+export OM_BATTERY_FULL_VOLTAGE=27.7
 
 # Mower motor temperatures to stop and start mowing
 export OM_MOWING_MOTOR_TEMP_HIGH=80.0
 export OM_MOWING_MOTOR_TEMP_LOW=40.0
 
-export OM_GPS_WAIT_TIME_SEC=30.0
-export OM_GPS_TIMEOUT_SEC=20.0
+export OM_GPS_WAIT_TIME_SEC=300.0
+export OM_GPS_TIMEOUT_SEC=15.0
 export OM_GPS_MAX_ACCURACY=0.04
-export OM_GPS_ALLOW_FLOAT_RTK=false
+export OM_GPS_ALLOW_FLOAT_RTK=true
 
 export OM_GPS_USE_FIX_POINT=true
-export OM_GPS_FIX_POINT_X=3.0
-export OM_GPS_FIX_POINT_Y=2.0
+export OM_GPS_FIX_POINT_X=4.0
+export OM_GPS_FIX_POINT_Y=3.0
 export OM_GPS_SET_DOCKED_POSE=true
-export OM_GPS_DOCKED_POSE_X=1.14
+export OM_GPS_DOCKED_POSE_X=1.30
 export OM_GPS_DOCKED_POSE_Y=-0.04
-export OM_MOWING_MOW_DIRECTION_REVERSE_AREAS=1,2,4
+export OM_MOWING_MOW_DIRECTION_REVERSE_AREAS=2,4
+export OM_MOWING_MOW_DIRECTION_INNER_FIRST_AREAS=1,2
 # Mowing Behavior Settings
 # True to enable mowing motor
 export OM_ENABLE_MOWER=true
 
 # True to start mowing automatically. If this is false, you need to start manually by pressing the start button
-export OM_AUTOMATIC_MODE=0
+export OM_AUTOMATIC_MODE=1
 
 export OM_OUTLINE_OFFSET=0.30
 
