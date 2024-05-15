@@ -17,3 +17,15 @@ controllers:
 
 #oscillation_timeout: 10.0
 #oscillation_distance: 0.2
+
+recovery_behaviors:
+  - name: aggressive_reset
+    type: clear_costmap_recovery/ClearCostmapRecovery
+  - name: rotate_recovery
+    type: rotate_recovery/RotateRecovery
+
+aggressive_reset:
+  reset_distance: 0.1
+  layer_names:
+    - obstacles
+    - range_sensor_layer
