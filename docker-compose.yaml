@@ -2,6 +2,25 @@ version: '3'
 
 services:
 
+  monitor:
+    container_name: rpi-mqtt-monitor
+    image: tazlogic/rpi-mqtt-monitor:latest
+    restart: unless-stopped
+    network_mode: host
+    privileged: true
+    environment:
+      RMM_MQTT_HOST: localhost
+      RMM_MQTT_TOPIC_PREFIX: monitor
+      RMM_UPDATE: false
+      RMM_GIT_UPDATE: false
+      RMM_SERVICE_SLEEP_TIME: 5
+      RMM_SYS_CLOCK_SPEED: true
+      RMM_WIFI_SIGNAL: true
+      RMM_WIFI_SIGNAL_DBM: true
+      RMM_RESTART_BUTTON: false
+      RMM_SHUTDOWN_BUTTON: false
+      RMM_USED_SPACE: false
+
   editor:
     container_name: mowgli-mapeditor
     image: tazlogic/mowgli-mapeditor:latest
@@ -37,7 +56,7 @@ services:
 
   openmower:
     container_name: mowgli-openmower
-    image: tazlogic/open-mower
+    image: tazlogic/open-mower:latest
     network_mode: host
     tty: true
     privileged: true
@@ -64,3 +83,4 @@ services:
       project: mowgli
       app: openmower
     restart: unless-stopped
+
