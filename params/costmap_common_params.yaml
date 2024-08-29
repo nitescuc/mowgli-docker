@@ -5,3 +5,5 @@ footprint: [[ 0.45,  0.15], [-0.20,  0.15], [-0.20, -0.15], [ 0.45, -0.15]]
 robot_radius: 0.0
 
 max_obstacle_height: 1.0
+
+transform_tolerance: 2.0
