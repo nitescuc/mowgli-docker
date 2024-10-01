@@ -7,8 +7,8 @@
 # YardForce500
 # CUSTOM (put your configs in ~/mower_params/)
 export OM_MOWER="CUSTOM"
-export OM_SLAM="ekf"
-# export OM_SLAM="ekf_amcl"
+# export OM_SLAM="ekf"
+export OM_SLAM="ekf_amcl"
 
 # Your Hardware Version (more a firmware version, really). Check the OpenMower docs (https://www.openmower.de/docs) for the firmware versions.
 # Supported values as of today:
@@ -110,6 +110,7 @@ export OM_GPS_SLAM_COVARIANCE_COEF_HECTOR=200.0
 export OM_GPS_WAIT_TIME_SEC=30.0
 # timeout was 20
 export OM_GPS_TIMEOUT_SEC=20.0
+export OM_GPS_MAX_COVARIANCE=0.1
 export OM_GPS_MAX_ACCURACY=0.04
 export OM_GPS_ALLOW_FLOAT_RTK=true
 
