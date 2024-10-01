@@ -1,8 +1,8 @@
 odom_model_type: diff-corrected
 gui_publish_rate: 10.0
 laser_max_beams: 150
-min_particles: 1000
-max_particles: 5000
+min_particles: 500
+max_particles: 3000
 kld_err: 0.01
 kld_z: 0.99
 odom_alpha1: 0.4
