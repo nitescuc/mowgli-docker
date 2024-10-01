@@ -6,15 +6,19 @@ DockingFTCPlanner:
   kd_ang: 0.0
   kd_lat: 0.0
   kd_lon: 0.0
+  kd_vlim: 0.0
   ki_ang: 0.0
   ki_ang_max: 10.0
   ki_lat: 0.0
   ki_lat_max: 10.0
   ki_lon: 0.0
   ki_lon_max: 10.0
+  ki_vlim: 0.0
+  ki_vlim_max: 10.0
   kp_ang: 3.0
   kp_lat: 7.0
   kp_lon: 4.0
+  kp_vlim: 1.0
   max_cmd_vel_ang: 0.5
   max_cmd_vel_speed: 0.2
   max_follow_distance: 0.5
@@ -26,3 +30,5 @@ DockingFTCPlanner:
   speed_fast_threshold: 0.3
   speed_fast_threshold_angle: 5.0
   speed_slow: 0.1
+  lateral_priority_distance: 0.0
+  mow_current_limit: 1.5

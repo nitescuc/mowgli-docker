@@ -3,19 +3,23 @@ FTCPlanner:
   debug_pid: true
   forward_only: true
   goal_timeout: 20.0
-  kd_ang: 0
-  kd_lat: 5.0
+  kd_ang: 1.0
+  kd_lat: 2.75
   kd_lon: 0.0
+  kd_vlim: 0.0
   ki_ang: 0.0
   ki_ang_max: 62.0
   ki_lat: 0.05
-  ki_lat_max: 20.0
+  ki_lat_max: 62.0
   ki_lon: 0.0
   ki_lon_max: 10.0
+  ki_vlim: 0.25
+  ki_vlim_max: 3.0
   kp_ang: 7.0
-  kp_lat: 7.0
+  kp_lat: 15.0
   kp_lon: 4.0
-  max_cmd_vel_ang: 2.0
+  kp_vlim: 0.0
+  max_cmd_vel_ang: 3.0
   max_cmd_vel_speed: 2.0
   max_follow_distance: 3.0
   max_goal_angle_error: 20.0
@@ -25,5 +29,8 @@ FTCPlanner:
   speed_fast: 0.3
   speed_fast_threshold: 1.0
   speed_fast_threshold_angle: 5.0
+#  speed_slow: -1.0
   speed_slow: 0.15
+  lateral_priority_distance: 0.10
+  mow_current_limit: 2.0
   check_obstacles: false
