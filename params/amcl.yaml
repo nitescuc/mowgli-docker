@@ -1,5 +1,6 @@
 odom_model_type: diff-corrected
-gui_publish_rate: 10.0
+gui_publish_rate: -1.0
+save_pose_rate: -1.0
 laser_max_beams: 150
 min_particles: 500
 max_particles: 3000
