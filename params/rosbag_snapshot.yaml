@@ -1,0 +1,19 @@
+topics:
+  - /amcl_initial
+  - /amcl_pose
+  - /cmd_vel
+  - /map:
+      duration: -1
+  - /move_base_flex/FTCPlanner/debug_pid
+  - /move_base_flex/global_costmap/footprint
+  - /move_base_flex/global_costmap/costmap
+  - /mower/status
+  - /odom
+  - /odometry_map/filtered
+  - /odometry_odom/filtered
+  - /scan
+  - /tf
+  - /tf_static:
+      duration: -1
+  - /xbot_driver_gps/xb_pose
+default_duration_limit: 120
