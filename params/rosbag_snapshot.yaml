@@ -5,6 +5,9 @@ topics:
   - /map:
       duration: -1
   - /move_base_flex/FTCPlanner/debug_pid
+  - /move_base_flex/FTCPlanner/global_point
+  - /move_base_flex/GlobalPlanner/plan:
+      duration: -1
   - /move_base_flex/global_costmap/footprint
   - /move_base_flex/global_costmap/costmap
   - /mower/status
@@ -17,3 +20,4 @@ topics:
       duration: -1
   - /xbot_driver_gps/xb_pose
 default_duration_limit: 120
+clear_buffer: false
