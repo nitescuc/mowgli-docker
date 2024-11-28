@@ -1,6 +1,6 @@
 DockingFTCPlanner:
   acceleration: 0.05
-  debug_pid: false
+  debug_pid: true
   forward_only: false
   goal_timeout: 20.0
   kd_ang: 0.0
@@ -15,11 +15,11 @@ DockingFTCPlanner:
   ki_lon_max: 10.0
   ki_vlim: 0.0
   ki_vlim_max: 10.0
-  kp_ang: 3.0
-  kp_lat: 7.0
+  kp_ang: 1.0
+  kp_lat: 6.0
   kp_lon: 4.0
   kp_vlim: 1.0
-  max_cmd_vel_ang: 0.5
+  max_cmd_vel_ang: 1.0
   max_cmd_vel_speed: 0.2
   max_follow_distance: 0.5
   max_goal_angle_error: 10.0
