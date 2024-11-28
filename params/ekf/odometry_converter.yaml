@@ -3,4 +3,5 @@ cov_factor_ori: 10.0
 cov_factor_float_pos: 500.0
 cov_factor_float_ori: 500.0
 orientation_min_speed: 0.01
-min_position_accuracy: 0.05
+min_position_accuracy: 0.03
+float_damping_factor: 10.0
