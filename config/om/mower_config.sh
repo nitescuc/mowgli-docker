@@ -59,8 +59,8 @@ export OM_USE_RELATIVE_POSITION=False
 export OM_GPS_PROTOCOL=UBX
 
 #source /config/ntrip.WSOE.sh
-source /config/ntrip.OUIL.sh
-#source /config/ntrip.LNE1.sh
+#source /config/ntrip.OUIL.sh
+source /config/ntrip.SGDF1.sh
 # NTRIP Settings
 # Set to False if using external radio plugged into the Ardusimple board.
 #export OM_USE_NTRIP=True
@@ -122,7 +122,7 @@ export OM_GPS_USE_FIX_POINT=true
 export OM_GPS_FIX_POINT_X=3.5
 export OM_GPS_FIX_POINT_Y=2.0
 export OM_GPS_SET_DOCKED_POSE=true
-export OM_GPS_DOCKED_POSE_X=1.10
+export OM_GPS_DOCKED_POSE_X=1.0
 export OM_GPS_DOCKED_POSE_Y=-0.003
 export OM_MOWING_MOW_DIRECTION_REVERSE_AREAS=4,5
 export OM_MOWING_MOW_DIRECTION_INNER_FIRST_AREAS=1,2
