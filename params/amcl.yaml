@@ -22,8 +22,8 @@ laser_lambda_short: 0.1
 laser_model_type: likelihood_field
 laser_likelihood_max_dist: 6.0
 
-#update_min_d: 0.1
-#update_min_a: 0.1
+update_min_d: 0.1
+update_min_a: 0.1
 odom_frame_id: odom
 resample_interval: 1
 transform_tolerance: 0.2
