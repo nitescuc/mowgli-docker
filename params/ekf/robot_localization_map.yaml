@@ -17,16 +17,29 @@ smooth_lagged_data: true
 history_length: 10
 dynamic_process_noise_covariance: true
 
-odom0: odometry_odom/filtered  # Output from local EKF
+#odom0: odometry_odom/__filtered  # Output from local EKF
+#odom0_config: [true, true, false,
+#               false, false, false,
+#               false,  false, false,
+#               false, false, true,
+#               false, false, false]
+#odom0_queue_size: 5
+#odom0_nodelay: true
+#odom0_differential: true
+#odom0_rejection_threshold: 1
+
+# wheel speed
+odom0: /odom_converter/odom
 odom0_config: [false, false, false,
                false, false, false,
-               true,  true,  false,
-               false, false, true,
+               true, true, false,
+               false, false, false,
                false, false, false]
-odom0_queue_size: 5
-odom0_nodelay: true
 odom0_differential: false
+odom0_nodelay: true
+odom0_queue_size: 1
 
+# absolute orientation
 imu0: /odom_converter/orientation
 imu0_config: [false, false, false,
               false, false, true,
@@ -37,6 +50,19 @@ imu0_differential: false
 imu0_relative: false
 imu0_queue_size: 1
 imu0_remove_gravitational_acceleration: false
+
+# imu angular speed
+imu1: /odom_converter/filtered_imu
+imu1_config: [false, false, false,
+              false, false, false,
+              false, false, false,
+              false, false, true,
+              false, false, false]
+imu1_nodelay: true
+imu1_differential: true
+imu1_relative: false
+imu1_queue_size: 1
+imu1_remove_gravitational_acceleration: false
 
 use_control: true
 control_config: [true, false, false,
@@ -59,7 +85,7 @@ pose0_rejection_threshold: 2
 # as a primary source, and set pose1_differential: true
 # In that case, set x', y' and yaw' to true, and the rest to false!
 
-pose1: amcl_pose # AMCL!
+pose1: /odom_converter/amcl_pose # AMCL!
 pose1_config: [true,  true, false,
                false, false, true,
                false, false, false,
@@ -69,6 +95,17 @@ pose1_config: [true,  true, false,
 pose1_rejection_threshold: 1.5
 pose1_differential: false
 pose1_relative: false
+
+pose2: poseupdate # Hector SLAM
+pose2_config: [true,  true, false,
+               false, false, true,
+               false, false, false,
+               false, false, false,
+               false, false, false]
+
+pose2_rejection_threshold: 1.5
+pose2_differential: false
+pose2_relative: false
 
 # poseN_rejection_threshold: (YOU MIGHT WANT THIS. If it's above the stated threshold value, the EKF will ignore the reading) (Defaults to numeric_limits<double>::max())
 
