@@ -1,7 +1,7 @@
-frequency: 100
+frequency: 50
 # transform_timeout: 0.2
 two_d_mode: true
-
+debug: false
 print_diagnostics: false
 
 odom0: /odom_converter/odom
