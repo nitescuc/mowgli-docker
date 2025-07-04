@@ -7,12 +7,11 @@
 # YardForce500
 # CUSTOM (put your configs in ~/mower_params/)
 export OM_MOWER="CUSTOM"
-# export OM_SLAM="ekf"
 export OM_SLAM="ekf_amcl"
 export OM_MOW_CONTROLLER="FTCPlanner"
-#export OM_MOW_CONTROLLER="DWAPlannerROS"
 export OM_ENABLE_ROSBAG_SNAPSHOT=true
 export OM_ENABLE_FOXGLOVE=true
+export OM_ADD_FAKE_OBSTACLE=true
 
 # Your Hardware Version (more a firmware version, really). Check the OpenMower docs (https://www.openmower.de/docs) for the firmware versions.
 # Supported values as of today:
@@ -88,7 +87,7 @@ export OM_DOCKING_APPROACH_DISTANCE=1.0
 export OM_UNDOCK_DISTANCE=2.5
 
 # How many outlines should the mover drive. It's not recommended to set this below 4.
-export OM_OUTLINE_COUNT=4
+export OM_OUTLINE_COUNT=6
 
 # The width of mowing paths.
 # Choose it smaller than your actual mowing tool in order to have some overlap.
@@ -96,25 +95,26 @@ export OM_OUTLINE_COUNT=4
 export OM_TOOL_WIDTH=0.13
 
 export OM_MAX_FIRST_POINT_ATTEMPTS=3
-export OM_MAX_FIRST_POINT_TRIM_ATTEMPTS=20
+export OM_MAX_FIRST_POINT_TRIM_ATTEMPTS=10
 export OM_OBSTACLE_SKIP_POINTS=10
 
 # Voltages for battery to be considered full or empty
 export OM_BATTERY_EMPTY_VOLTAGE=22.7
-export OM_BATTERY_FULL_VOLTAGE=27.7
+#export OM_BATTERY_FULL_VOLTAGE=27.7
+export OM_BATTERY_FULL_VOLTAGE=27.0
 
 # Mower motor temperatures to stop and start mowing
 export OM_MOWING_MOTOR_TEMP_HIGH=80.0
 export OM_MOWING_MOTOR_TEMP_LOW=40.0
 
 export OM_GPS_PUB_INITIAL_POSE_SEC=5.0
-export OM_GPS_SLAM_COVARIANCE_COEF_AMCL=10000.0
-export OM_GPS_SLAM_COVARIANCE_COEF_HECTOR=200.0
+#export OM_GPS_SLAM_COVARIANCE_COEF_AMCL=10000.0
+#export OM_GPS_SLAM_COVARIANCE_COEF_HECTOR=200.0
 
 export OM_GPS_WAIT_TIME_SEC=30.0
 # timeout was 20
 export OM_GPS_TIMEOUT_SEC=10.0
-export OM_GPS_MAX_COVARIANCE=0.15
+export OM_GPS_MAX_COVARIANCE=0.30
 export OM_GPS_MAX_ACCURACY=0.04
 export OM_GPS_ALLOW_FLOAT_RTK=true
 
@@ -122,11 +122,11 @@ export OM_GPS_USE_FIX_POINT=true
 export OM_GPS_FIX_POINT_X=3.5
 export OM_GPS_FIX_POINT_Y=2.0
 export OM_GPS_SET_DOCKED_POSE=true
-export OM_GPS_DOCKED_POSE_X=1.0
+export OM_GPS_DOCKED_POSE_X=1.14
 export OM_GPS_DOCKED_POSE_Y=-0.003
 export OM_MOWING_MOW_DIRECTION_REVERSE_AREAS=4,5
-export OM_MOWING_MOW_DIRECTION_INNER_FIRST_AREAS=1,2
-export OM_MOWING_LIDAR_ENABLED_AREAS=0,1,2
+export OM_MOWING_MOW_DIRECTION_INNER_FIRST_AREAS=2,3
+export OM_MOWING_LIDAR_ENABLED_AREAS=0,1,2,3
 # Mowing Behavior Settings
 # True to enable mowing motor
 export OM_ENABLE_MOWER=true
@@ -134,7 +134,7 @@ export OM_ENABLE_MOWER=true
 # True to start mowing automatically. If this is false, you need to start manually by pressing the start button
 export OM_AUTOMATIC_MODE=1
 
-export OM_OUTLINE_OFFSET=0.3
+export OM_OUTLINE_OFFSET=0.25
 
 export OM_NO_COMMS=true
 
