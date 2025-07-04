@@ -30,6 +30,8 @@ services:
       ROSBRIDGE_HOST: 192.168.1.8
     volumes:
       - ./ros:/map
+      - ./config/om:/config:ro
+    command: /bin/bash -c  "source /config/mower_config.sh && python3 app.py --map=/map/map.bag --map_png=/map/map.png"
 
   web:
     container_name: mowgli-web
@@ -83,4 +85,3 @@ services:
       project: mowgli
       app: openmower
     restart: unless-stopped
-
