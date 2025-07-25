@@ -21,8 +21,8 @@ controllers:
 recovery_behaviors:
   - name: aggressive_reset
     type: clear_costmap_recovery/ClearCostmapRecovery
-  - name: rotate_recovery
-    type: rotate_recovery/RotateRecovery
+#  - name: rotate_recovery
+#    type: rotate_recovery/RotateRecovery
 
 aggressive_reset:
   reset_distance: 0.1
