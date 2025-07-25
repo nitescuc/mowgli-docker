@@ -4,7 +4,7 @@ print_diagnostics: false
 debug: false
 
 map_frame: map
-odom_frame: odom
+odom_frame: map
 base_link_frame: base_link
 world_frame: map
 publish_tf: true
@@ -54,6 +54,7 @@ imu0_remove_gravitational_acceleration: false
 
 # imu angular speed
 imu1: /odom_converter/filtered_imu
+#imu1: /imu/data
 imu1_config: [false, false, false,
               false, false, false,
               false, false, false,
