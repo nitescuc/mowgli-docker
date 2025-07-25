@@ -7,7 +7,7 @@
 # YardForce500
 # CUSTOM (put your configs in ~/mower_params/)
 export OM_MOWER="CUSTOM"
-export OM_SLAM="ekf_amcl"
+export OM_SLAM="ekf_amcl_gps"
 export OM_MOW_CONTROLLER="FTCPlanner"
 export OM_ENABLE_ROSBAG_SNAPSHOT=true
 export OM_ENABLE_FOXGLOVE=true
@@ -124,7 +124,7 @@ export OM_GPS_FIX_POINT_Y=2.0
 export OM_GPS_SET_DOCKED_POSE=true
 export OM_GPS_DOCKED_POSE_X=1.14
 export OM_GPS_DOCKED_POSE_Y=-0.003
-export OM_MOWING_MOW_DIRECTION_REVERSE_AREAS=4,5
+export OM_MOWING_MOW_DIRECTION_REVERSE_AREAS=2,4
 export OM_MOWING_MOW_DIRECTION_INNER_FIRST_AREAS=2,3
 export OM_MOWING_LIDAR_ENABLED_AREAS=0,1,2,3
 # Mowing Behavior Settings
