@@ -54,12 +54,11 @@ imu0_remove_gravitational_acceleration: false
 
 # imu angular speed
 imu1: /odom_converter/filtered_imu
-#imu1: /imu/data
 imu1_config: [false, false, false,
               false, false, false,
               false, false, false,
               false, false, true,
-              false, false, false]
+              true, true, false]
 imu1_nodelay: true
 imu1_differential: true
 imu1_relative: false
