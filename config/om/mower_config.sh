@@ -9,7 +9,7 @@
 export OM_MOWER="CUSTOM"
 export OM_SLAM="ekf_amcl_gps"
 export OM_MOW_CONTROLLER="FTCPlanner"
-export OM_ENABLE_ROSBAG_SNAPSHOT=true
+export OM_ENABLE_ROSBAG_SNAPSHOT=false
 export OM_ENABLE_FOXGLOVE=true
 export OM_ADD_FAKE_OBSTACLE=true
 
