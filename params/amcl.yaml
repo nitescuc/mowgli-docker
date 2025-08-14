@@ -10,8 +10,8 @@ kld_err: 0.01
 kld_z: 0.99
 odom_alpha1: 0.02
 odom_alpha2: 0.02
-odom_alpha3: 0.02
-odom_alpha4: 0.02
+odom_alpha3: 0.01
+odom_alpha4: 0.01
 odom_alpha5: 0.01
 
 laser_z_hit: 0.90
