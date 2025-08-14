@@ -85,3 +85,43 @@ services:
       project: mowgli
       app: openmower
     restart: unless-stopped
+
+  foxglove:
+    container_name: foxglove
+    image: tazlogic/foxglove-bridge
+    network_mode: host
+    restart: unless-stopped
+    volumes:
+      - ./config/om:/config:ro
+      - ./docker/openmower/scripts/start_mowgli_single.sh:/home/ubuntu/scripts/start_mowgli.sh
+      - ./mower_params:/root/mower_params:ro
+      - /etc/timezone:/etc/timezone:ro
+    environment:
+      ROS_MASTER_URI: http://${ROS_IP}:11311
+      ROS_IP: ${ROS_IP}
+    depends_on:
+      - openmower
+
+#  hector:
+#    container_name: hector
+#    image: tazlogic/hector-localization
+#    network_mode: host
+#    restart: unless-stopped
+#    logging:
+#      driver: "json-file"
+#      options:
+#        max-file: "5"
+#        max-size: 10m
+#    volumes:
+#      - ./config/om:/config:ro
+#      - ./docker/openmower/scripts/start_mowgli_single.sh:/home/ubuntu/scripts/start_mowgli.sh
+#      - ./mower_params:/root/mower_params:ro
+#      - ./params:/opt/open_mower_ros/src/open_mower/params:ro
+#      - /etc/timezone:/etc/timezone:ro
+#    environment:
+#      ROS_MASTER_URI: http://${ROS_IP}:11311
+#      ROS_IP: ${ROS_IP}
+#      ROSCONSOLE_CONFIG_FILE: /config/rosconsole.config   # comment this line out to enable more logs
+#    tmpfs: /root/.ros/log                          # comment this line out to enable persistent logs
+#    depends_on:
+#      - openmower
