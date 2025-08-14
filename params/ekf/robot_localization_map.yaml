@@ -97,16 +97,16 @@ pose1_rejection_threshold: 1.5
 pose1_differential: false
 pose1_relative: false
 
-pose2: poseupdate # Hector SLAM
-pose2_config: [true,  true, false,
-               false, false, true,
-               false, false, false,
-               false, false, false,
-               false, false, false]
+#pose2: /poseupdate # Hector SLAM
+#pose2_config: [true,  true, false,
+#               false, false, true,
+#               false, false, false,
+#               false, false, false,
+#               false, false, false]
 
-pose2_rejection_threshold: 1.5
-pose2_differential: false
-pose2_relative: false
+#pose2_rejection_threshold: 1.5
+#pose2_differential: false
+#pose2_relative: false
 
 # poseN_rejection_threshold: (YOU MIGHT WANT THIS. If it's above the stated threshold value, the EKF will ignore the reading) (Defaults to numeric_limits<double>::max())
 
