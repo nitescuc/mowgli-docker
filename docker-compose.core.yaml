@@ -1,0 +1,164 @@
+version: '3'
+
+services:
+
+  monitor:
+    container_name: rpi-mqtt-monitor
+    image: tazlogic/rpi-mqtt-monitor:latest
+    restart: unless-stopped
+    network_mode: host
+    privileged: true
+    environment:
+      RMM_MQTT_HOST: localhost
+      RMM_MQTT_TOPIC_PREFIX: monitor
+      RMM_UPDATE: false
+      RMM_GIT_UPDATE: false
+      RMM_SERVICE_SLEEP_TIME: 5
+      RMM_SYS_CLOCK_SPEED: true
+      RMM_WIFI_SIGNAL: true
+      RMM_WIFI_SIGNAL_DBM: true
+      RMM_RESTART_BUTTON: false
+      RMM_SHUTDOWN_BUTTON: false
+      RMM_USED_SPACE: false
+
+  editor:
+    container_name: mowgli-mapeditor
+    image: tazlogic/mowgli-mapeditor:latest
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      ROSBRIDGE_HOST: 192.168.1.8
+    volumes:
+      - ./ros:/map
+      - ./config/om:/config:ro
+    command: /bin/bash -c  "source /config/mower_config.sh && python3 app.py --map=/map/map.bag --map_png=/map/map.png"
+
+  web:
+    container_name: mowgli-web
+    image: nginx
+    ports:
+      - 4005:80
+    volumes:
+      - ./web:/usr/share/nginx/html:ro
+    labels:
+      project: mowgli
+      app: web
+    restart: unless-stopped
+
+  mosquitto:
+    container_name: mowgli-mqtt
+    hostname: mosquitto
+    image: eclipse-mosquitto:latest
+    ports:
+      - 1883:1883
+      - 9001:9001
+    volumes:
+      - ./config/mqtt/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+    restart: unless-stopped
+
+  openmower-core:
+    container_name: mowgli-openmower-core
+    image: tazlogic/open-mower:latest
+    network_mode: host
+    tty: true
+    privileged: true
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 10m
+    environment:
+      ROS_MASTER_URI: http://${ROS_IP}:11311
+      ROS_IP: ${ROS_IP}
+      ROSCONSOLE_CONFIG_FILE: /config/rosconsole.config   # comment this line out to enable more logs
+#      ROSOUT_DISABLE_FILE_LOGGING: true                   # comment this line out to enable more logs
+    tmpfs: /root/.ros/log                          # comment this line out to enable persistent logs
+    command: |
+      /opt/ros/noetic/bin/roscore &
+      /opt/ros/noetic/bin/rosrun rosserial_server serial_node _port:=/dev/mowgli _baud:=115200
+    volumes:
+      - ./config/om:/config:ro
+      - ./docker/openmower/scripts/start_mowgli_single.sh:/home/ubuntu/scripts/start_mowgli.sh
+      - ./mower_params:/root/mower_params:ro
+      - ./params:/opt/open_mower_ros/src/open_mower/params:ro
+      - ./ros:/root/.ros/
+      - /etc/timezone:/etc/timezone:ro
+      - /dev:/dev
+    labels:
+      project: mowgli
+      app: openmower
+    restart: unless-stopped
+
+  openmower:
+    container_name: mowgli-openmower
+    image: tazlogic/open-mower:latest
+    network_mode: host
+    tty: true
+    privileged: true
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 10m
+    environment:
+      ROS_MASTER_URI: http://${ROS_IP}:11311
+      ROS_IP: ${ROS_IP}
+      ROSCONSOLE_CONFIG_FILE: /config/rosconsole.config   # comment this line out to enable more logs
+#      ROSOUT_DISABLE_FILE_LOGGING: true                   # comment this line out to enable more logs
+    tmpfs: /root/.ros/log                          # comment this line out to enable persistent logs
+    command: |
+      /opt/ros/noetic/bin/roslaunch open_mower open_mower.launch --screen --wait
+    volumes:
+      - ./config/om:/config:ro
+      - ./docker/openmower/scripts/start_mowgli_single.sh:/home/ubuntu/scripts/start_mowgli.sh
+      - ./mower_params:/root/mower_params:ro
+      - ./params:/opt/open_mower_ros/src/open_mower/params:ro
+      - ./ros:/root/.ros/
+      - /etc/timezone:/etc/timezone:ro
+      - /dev:/dev
+    labels:
+      project: mowgli
+      app: openmower
+    restart: unless-stopped
+    depends_on:
+      - openmower-core
+
+  foxglove:
+    container_name: foxglove
+    image: tazlogic/foxglove-bridge
+    network_mode: host
+    restart: unless-stopped
+    volumes:
+      - ./config/om:/config:ro
+      - ./docker/openmower/scripts/start_mowgli_single.sh:/home/ubuntu/scripts/start_mowgli.sh
+      - ./mower_params:/root/mower_params:ro
+      - /etc/timezone:/etc/timezone:ro
+    environment:
+      ROS_MASTER_URI: http://${ROS_IP}:11311
+      ROS_IP: ${ROS_IP}
+    depends_on:
+      - openmower-core
+
+#  hector:
+#    container_name: hector
+#    image: tazlogic/hector-localization
+#    network_mode: host
+#    restart: unless-stopped
+#    logging:
+#      driver: "json-file"
+#      options:
+#        max-file: "5"
+#        max-size: 10m
+#    volumes:
+#      - ./config/om:/config:ro
+#      - ./docker/openmower/scripts/start_mowgli_single.sh:/home/ubuntu/scripts/start_mowgli.sh
+#      - ./mower_params:/root/mower_params:ro
+#      - ./params:/opt/open_mower_ros/src/open_mower/params:ro
+#      - /etc/timezone:/etc/timezone:ro
+#    environment:
+#      ROS_MASTER_URI: http://${ROS_IP}:11311
+#      ROS_IP: ${ROS_IP}
+#      ROSCONSOLE_CONFIG_FILE: /config/rosconsole.config   # comment this line out to enable more logs
+#    tmpfs: /root/.ros/log                          # comment this line out to enable persistent logs
+#    depends_on:
+#      - openmower
