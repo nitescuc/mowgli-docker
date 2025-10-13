@@ -1,0 +1,12 @@
+default:
+  inner_first: true      # Reorder paths: inner before outline
+  reverse: false          # Reverse waypoints within each path  
+  start_point:            # Starting point for distance optimization
+    type: "bottom_right"   # Options: top_left, top_right, bottom_left, bottom_right, coordinates
+
+areas:
+  2:
+    reverse: true
+    inner_first: true
+  3:
+    inner_first: true
