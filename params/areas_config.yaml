@@ -5,8 +5,23 @@ default:
     type: "bottom_right"   # Options: top_left, top_right, bottom_left, bottom_right, coordinates
 
 areas:
+  0:
+    fix_point:
+      x: 3.5
+      y: 2.0
+  1: 
+    fix_point:
+      x: 3.5
+      y: 2.0
   2:
     reverse: true
     inner_first: true
+    fix_point:
+      x: 2.5
+      y: -10.0
   3:
     inner_first: true
+    fix_point:
+      x: 2.5
+      y: -10.0
+    outlines_count: 6
