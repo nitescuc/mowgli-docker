@@ -56,6 +56,38 @@ services:
       - ./config/mqtt/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
     restart: unless-stopped
 
+  openmower-core:
+    container_name: mowgli-openmower-core
+    image: tazlogic/open-mower:latest
+    network_mode: host
+    tty: true
+    privileged: true
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 10m
+    environment:
+      ROS_MASTER_URI: http://${ROS_IP}:11311
+      ROS_IP: ${ROS_IP}
+      ROSCONSOLE_CONFIG_FILE: /config/rosconsole.config   # comment this line out to enable more logs
+#      ROSOUT_DISABLE_FILE_LOGGING: true                   # comment this line out to enable more logs
+    tmpfs: /root/.ros/log                          # comment this line out to enable persistent logs
+    entrypoint: /generic_entrypoint.sh
+    command: /bin/bash -c "/start_core.sh"
+    volumes:
+      - ./config/om:/config:ro
+      - ./docker/openmower/scripts/start_mowgli_single.sh:/home/ubuntu/scripts/start_mowgli.sh
+      - ./mower_params:/root/mower_params:ro
+      - ./params:/opt/open_mower_ros/src/open_mower/params:ro
+      - ./ros:/root/.ros/
+      - /etc/timezone:/etc/timezone:ro
+      - /dev:/dev
+    labels:
+      project: mowgli
+      app: openmower
+    restart: unless-stopped
+
   openmower:
     container_name: mowgli-openmower
     image: tazlogic/open-mower:latest
@@ -73,6 +105,7 @@ services:
       ROSCONSOLE_CONFIG_FILE: /config/rosconsole.config   # comment this line out to enable more logs
 #      ROSOUT_DISABLE_FILE_LOGGING: true                   # comment this line out to enable more logs
     tmpfs: /root/.ros/log                          # comment this line out to enable persistent logs
+    command: /bin/bash -c "/opt/ros/noetic/bin/roslaunch open_mower open_mower.launch --screen --wait"
     volumes:
       - ./config/om:/config:ro
       - ./docker/openmower/scripts/start_mowgli_single.sh:/home/ubuntu/scripts/start_mowgli.sh
@@ -85,6 +118,8 @@ services:
       project: mowgli
       app: openmower
     restart: unless-stopped
+    depends_on:
+      - openmower-core
 
   foxglove:
     container_name: foxglove
@@ -100,7 +135,7 @@ services:
       ROS_MASTER_URI: http://${ROS_IP}:11311
       ROS_IP: ${ROS_IP}
     depends_on:
-      - openmower
+      - openmower-core
 
 #  hector:
 #    container_name: hector
