@@ -5,7 +5,8 @@ cov_factor_float_ori: 5000.0
 orientation_min_speed: 0.15
 min_position_accuracy: 0.05
 #min_position_accuracy: 0.0
-float_damping_factor: 500.0
+float_damping_factor: 100.0
 acceleration_covariance_factor: 10.0
 yaw_covariance_factor: 1.0
 amcl_covariance_factor: 5.0
+wheel_ticks_per_m: 285
