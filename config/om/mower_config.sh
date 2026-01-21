@@ -60,6 +60,8 @@ export OM_GPS_PROTOCOL=UBX
 #source /config/ntrip.WSOE.sh
 #source /config/ntrip.OUIL.sh
 source /config/ntrip.SGDF1.sh
+#source /config/ntrip.VLNS.sh
+#source /config/ntrip.IPGP.sh
 # NTRIP Settings
 # Set to False if using external radio plugged into the Ardusimple board.
 #export OM_USE_NTRIP=True
