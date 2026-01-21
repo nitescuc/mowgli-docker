@@ -17,11 +17,11 @@ areas:
     reverse: true
     inner_first: true
     fix_point:
-      x: 2.5
-      y: -10.0
+      x: 2.0
+      y: -11.0
   3:
     inner_first: true
     fix_point:
-      x: 2.5
-      y: -10.0
+      x: 2.0
+      y: -11.0
     outlines_count: 6
