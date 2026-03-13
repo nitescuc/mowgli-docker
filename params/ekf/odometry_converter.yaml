@@ -9,4 +9,5 @@ float_damping_factor: 100.0
 acceleration_covariance_factor: 10.0
 yaw_covariance_factor: 1.0
 amcl_covariance_factor: 5.0
-wheel_ticks_per_m: 285
+wheel_ticks_per_m: 330
+wheel_ticks_covariance: 0.0025
