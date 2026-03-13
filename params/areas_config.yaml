@@ -14,11 +14,11 @@ areas:
       x: 3.5
       y: 2.0
   2:
-    reverse: true
+    reverse: false
     inner_first: true
     fix_point:
-      x: 2.0
-      y: -11.0
+      x: 3.5
+      y: 2.0
   3:
     inner_first: true
     fix_point:
