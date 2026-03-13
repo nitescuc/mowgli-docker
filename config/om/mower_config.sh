@@ -8,6 +8,8 @@
 # CUSTOM (put your configs in ~/mower_params/)
 export OM_MOWER="CUSTOM"
 export OM_SLAM="ekf_amcl_gps"
+export OM_USE_ODOM_FRAME=false
+export USE_ODOM_FRAME=false
 export OM_MOW_CONTROLLER="FTCPlanner"
 export OM_ENABLE_ROSBAG_SNAPSHOT=false
 export OM_ENABLE_FOXGLOVE=true
@@ -59,8 +61,8 @@ export OM_GPS_PROTOCOL=UBX
 
 #source /config/ntrip.WSOE.sh
 #source /config/ntrip.OUIL.sh
-source /config/ntrip.SGDF1.sh
-#source /config/ntrip.VLNS.sh
+#source /config/ntrip.SGDF1.sh
+source /config/ntrip.VLNS.sh
 #source /config/ntrip.IPGP.sh
 # NTRIP Settings
 # Set to False if using external radio plugged into the Ardusimple board.
