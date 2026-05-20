@@ -1,2 +1,5 @@
+device_type: tcp
 serial_port: "/dev/gps"
 baudrate: 460800
+tcp_host: "127.0.0.1"
+tcp_port: "6000"

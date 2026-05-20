@@ -28,6 +28,7 @@ services:
     network_mode: host
     environment:
       ROSBRIDGE_HOST: 192.168.1.8
+      WEB_SERVER_PORT: 5000
     volumes:
       - ./ros:/map
       - ./config/om:/config:ro
@@ -54,6 +55,29 @@ services:
       - 9001:9001
     volumes:
       - ./config/mqtt/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+    restart: unless-stopped
+
+  str2str:
+    container_name: mowgli_str2str
+    image: tazlogic/str2str
+    network_mode: host
+    privileged: true
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 10m
+    environment:
+      SERIAL_PORT: /dev/gps
+      SERIAL_BAUD: 460800
+      NTRIP_HOST: crtk.net
+      NTRIP_PORT: 2101
+      NTRIP_MOUNTPOINT: OUIL
+      NTRIP_USER: centipede
+      NTRIP_PASSWORD: centipede
+      TCP_OUT_PORT: 6000
+    volumes:
+      - /dev:/dev 
     restart: unless-stopped
 
   openmower-core:
@@ -135,15 +159,8 @@ services:
     environment:
       ROS_MASTER_URI: http://${ROS_IP}:11311
       ROS_IP: ${ROS_IP}
-#      ROSCONSOLE_CONFIG_FILE: /config/rosconsole.config   # comment this line out to enable more logs
-#      ROSOUT_DISABLE_FILE_LOGGING: true                   # comment this line out to enable more logs
     tmpfs: /root/.ros/log                          # comment this line out to enable persistent logs
-#    command: /bin/bash -c "/opt/ros/noetic/bin/roslaunch open_mower _lidar.launch --screen --wait"
     volumes:
-#      - ./config/om:/config:ro
-#      - ./docker/openmower/scripts/start_mowgli_single.sh:/home/ubuntu/scripts/start_mowgli.sh
-#      - ./mower_params:/root/mower_params:ro
-#      - ./params:/opt/open_mower_ros/src/open_mower/params:ro
       - ./ros:/root/.ros/
       - /etc/timezone:/etc/timezone:ro
       - /dev:/dev
@@ -169,27 +186,3 @@ services:
       ROS_IP: ${ROS_IP}
     depends_on:
       - openmower-core
-
-#  hector:
-#    container_name: hector
-#    image: tazlogic/hector-localization
-#    network_mode: host
-#    restart: unless-stopped
-#    logging:
-#      driver: "json-file"
-#      options:
-#        max-file: "5"
-#        max-size: 10m
-#    volumes:
-#      - ./config/om:/config:ro
-#      - ./docker/openmower/scripts/start_mowgli_single.sh:/home/ubuntu/scripts/start_mowgli.sh
-#      - ./mower_params:/root/mower_params:ro
-#      - ./params:/opt/open_mower_ros/src/open_mower/params:ro
-#      - /etc/timezone:/etc/timezone:ro
-#    environment:
-#      ROS_MASTER_URI: http://${ROS_IP}:11311
-#      ROS_IP: ${ROS_IP}
-#      ROSCONSOLE_CONFIG_FILE: /config/rosconsole.config   # comment this line out to enable more logs
-#    tmpfs: /root/.ros/log                          # comment this line out to enable persistent logs
-#    depends_on:
-#      - openmower
