@@ -60,9 +60,9 @@ export OM_USE_RELATIVE_POSITION=False
 export OM_GPS_PROTOCOL=UBX
 
 #source /config/ntrip.WSOE.sh
-#source /config/ntrip.OUIL.sh
+source /config/ntrip.OUIL.sh
 #source /config/ntrip.SGDF1.sh
-source /config/ntrip.VLNS.sh
+#source /config/ntrip.VLNS.sh
 #source /config/ntrip.IPGP.sh
 # NTRIP Settings
 # Set to False if using external radio plugged into the Ardusimple board.
@@ -91,7 +91,7 @@ export OM_DOCKING_APPROACH_DISTANCE=1.0
 export OM_UNDOCK_DISTANCE=2.5
 
 # How many outlines should the mover drive. It's not recommended to set this below 4.
-export OM_OUTLINE_COUNT=6
+export OM_OUTLINE_COUNT=7
 
 # The width of mowing paths.
 # Choose it smaller than your actual mowing tool in order to have some overlap.
@@ -103,9 +103,9 @@ export OM_MAX_FIRST_POINT_TRIM_ATTEMPTS=10
 export OM_OBSTACLE_SKIP_POINTS=10
 
 # Voltages for battery to be considered full or empty
-export OM_BATTERY_EMPTY_VOLTAGE=22.7
+export OM_BATTERY_EMPTY_VOLTAGE=22.0
 #export OM_BATTERY_FULL_VOLTAGE=27.7
-export OM_BATTERY_FULL_VOLTAGE=27.0
+export OM_BATTERY_FULL_VOLTAGE=27.5
 
 # Mower motor temperatures to stop and start mowing
 export OM_MOWING_MOTOR_TEMP_HIGH=80.0
