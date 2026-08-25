@@ -10,8 +10,8 @@ kld_err: 0.01
 kld_z: 0.99
 odom_alpha1: 0.02
 odom_alpha2: 0.02
-odom_alpha3: 0.01
-odom_alpha4: 0.01
+odom_alpha3: 0.03
+odom_alpha4: 0.02
 odom_alpha5: 0.03
 
 laser_z_hit: 0.90
@@ -22,17 +22,17 @@ laser_z_short: 0.1
 laser_sigma_hit: 0.1
 laser_lambda_short: 0.1
 laser_model_type: likelihood_field
-laser_likelihood_max_dist: 2.0
+laser_likelihood_max_dist: 1.0
 
 update_min_d: 0.1
 update_min_a: 0.1
 odom_frame_id: map
 resample_interval: 2
 transform_tolerance: 0.2
-recovery_alpha_slow: 0.005
-recovery_alpha_fast: 0.5
-#recovery_alpha_slow: 0.0
-#recovery_alpha_fast: 0.0
+#recovery_alpha_slow: 0.005
+#recovery_alpha_fast: 0.5
+recovery_alpha_slow: 0.0
+recovery_alpha_fast: 0.0
 
 scan: /scan
 use_map_topic: true
