@@ -25,3 +25,6 @@ areas:
       x: 2.0
       y: -11.0
     outlines_count: 7
+    start_point:
+      x: 4
+      y: -23
