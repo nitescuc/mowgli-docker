@@ -70,14 +70,11 @@ services:
     environment:
       SERIAL_PORT: /dev/gps
       SERIAL_BAUD: 460800
-      NTRIP_HOST: crtk.net
-      NTRIP_PORT: 2101
-      NTRIP_MOUNTPOINT: OUIL
-      NTRIP_USER: centipede
-      NTRIP_PASSWORD: centipede
       TCP_OUT_PORT: 6000
     volumes:
       - /dev:/dev 
+      - ./config/om:/config:ro
+    entrypoint: ["/config/ntrip-wrapper.sh", "/entrypoint.sh"]
     restart: unless-stopped
 
   openmower-core:

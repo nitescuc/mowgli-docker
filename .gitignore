@@ -1,4 +1,4 @@
 ros
 .env
 config/om/ntrip.*.sh
-
+config/om/ntrip.sh
