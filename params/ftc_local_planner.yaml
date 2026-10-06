@@ -5,16 +5,16 @@ FTCPlanner:
   goal_timeout: 20.0
   kd_ang: 1.0
   kd_ang_max: 1.0
-  kd_lat: 2.0
-  kd_lat_max: 1.5
+  kd_lat: 3.0
+  kd_lat_max: 3.0
   kd_lon: 0.0
   kd_lon_max: 2.0
   kd_vlim: 0.0
   ki_ang: 0.0
   ki_ang_max: 3.0
   # ki_lat: 0.0
-  ki_lat: 1.0
-  ki_lat_max: 3.0
+  ki_lat: 0.0
+  ki_lat_max: 4.0
   ki_lon: 1.0
   ki_lon_max: 3.0
   ki_vlim: 0.25
